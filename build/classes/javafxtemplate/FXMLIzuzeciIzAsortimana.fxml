@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxtemplate.FXMLIzuzeciIzAsortimana">
+   <top>
+      <Pane prefHeight="374.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
+         <children>
+            <TabPane prefHeight="750.0" prefWidth="1300.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Izuzeci iz asortimana">
+                     <content>
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <TableView fx:id="tbl_V_pregled_ARIOJ" layoutX="375.0" layoutY="32.0" prefHeight="435.0" prefWidth="911.0">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="C1" />
+                                  <TableColumn prefWidth="75.0" text="C2" />
+                                </columns>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </TableView>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4e9ee" height="233.0" layoutX="376.0" layoutY="474.0" stroke="BLACK" strokeType="INSIDE" width="912.0" />
+                              <Label layoutX="402.0" layoutY="487.0" prefHeight="25.0" prefWidth="191.0" text="UNESI NOVU STAVKU" textFill="#222894">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="57.0" layoutY="7.0" prefHeight="25.0" prefWidth="191.0" text="Lista Akcija" textFill="#222894">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="430.0" layoutY="7.0" prefHeight="25.0" prefWidth="191.0" text="Izuzeci iz asortimana" textFill="#222894">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <TableView fx:id="tbl_lista_akcija" layoutX="14.0" layoutY="32.0" prefHeight="674.0" prefWidth="350.0">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="C1" />
+                                  <TableColumn prefWidth="75.0" text="C2" />
+                                </columns>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </TableView>
+                              <ComboBox fx:id="cmb_odabir_artikla" layoutX="471.0" layoutY="539.0" prefHeight="25.0" prefWidth="500.0" />
+                              <Label layoutX="402.0" layoutY="543.0" text="Artikal" />
+                              <Button layoutX="1078.0" layoutY="638.0" mnemonicParsing="false" onAction="#IzbaciIzAsortArtikOrgjed" prefHeight="43.0" prefWidth="92.0" text="Dodaj">
+                                 <effect>
+                                    <DropShadow />
+                                 </effect></Button>
+                              <Label layoutX="402.0" layoutY="593.0" text="Orgjed" />
+                              <ComboBox fx:id="cmb_popuni_orgjed" layoutX="471.0" layoutY="589.0" prefWidth="150.0" />
+                              <Button layoutX="1185.0" layoutY="638.0" mnemonicParsing="false" onAction="#obrisiIskljuceneArtikle" prefHeight="43.0" prefWidth="92.0" text="Obriši">
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Button>
+                           </children>
+                        </Pane>
+                     </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </Pane>
+   </top>
+</BorderPane>

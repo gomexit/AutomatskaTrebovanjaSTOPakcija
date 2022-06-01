@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxtemplate.FXMLArhivaStopAkcijaController">
+   <children>
+      <TableView fx:id="tbl_stop_akcije" layoutX="14.0" layoutY="44.0" prefHeight="200.0" prefWidth="600.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <TableView fx:id="tbl_prikaz_artikla" layoutX="14.0" layoutY="304.0" prefHeight="264.0" prefWidth="600.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <Label layoutX="269.0" layoutY="14.0" text="Prikaz stop akcija" />
+      <Label layoutX="241.0" layoutY="273.0" text="Artikli za selektovanu akciju" />
+   </children>
+</Pane>

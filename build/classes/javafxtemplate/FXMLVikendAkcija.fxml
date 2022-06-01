@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxtemplate.FXMLVikendAkcijaController">
+   <top>
+      <Label prefHeight="65.0" prefWidth="268.0" text="VIKEND AKCIJA" BorderPane.alignment="CENTER">
+          
+                 <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               
+   </Label>
+   </top>
+   <left>
+      <Pane prefHeight="283.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="30.0" layoutY="2.0" prefHeight="17.0" prefWidth="183.0" text="LISTA VIKEND AKCIJA" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tblListaAkcija" layoutX="2.0" layoutY="35.0" prefHeight="693.0" prefWidth="297.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+   </left>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="tblListaArtikala" layoutX="309.0" layoutY="36.0" prefHeight="693.0" prefWidth="683.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <Button layoutX="310.0" layoutY="10.0" mnemonicParsing="false" onAction="#uvezi2" prefHeight="25.0" prefWidth="202.0" text="Učitaj artikle" />
+            <Button layoutX="522.0" layoutY="10.0" mnemonicParsing="false" onAction="#obrisiArtikle" prefHeight="25.0" prefWidth="181.0" text="Obriši artikle" />
+            <Label fx:id="lblPrikazanoArtikala" layoutX="733.0" layoutY="-2.0" prefHeight="17.0" prefWidth="246.0" text="Label" />
+            <Label fx:id="lblUcitaniSlogovi" layoutX="733.0" layoutY="14.0" text="Label" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="167.0" layoutX="3.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" width="296.0" />
+            <DatePicker fx:id="AKC_ADD_datum_od" layoutX="105.0" layoutY="63.0" />
+            <DatePicker fx:id="AKC_ADD_datum_do" layoutX="105.0" layoutY="98.0" />
+            <TextField fx:id="AKC_opis" layoutX="105.0" layoutY="132.0" prefHeight="25.0" prefWidth="174.0" />
+            <Button layoutX="105.0" layoutY="165.0" mnemonicParsing="false" onAction="#unosNoveAkcije" prefHeight="25.0" prefWidth="175.0" text="Unesi novu akciju" />
+            <Label layoutX="30.0" layoutY="67.0" prefHeight="17.0" prefWidth="63.0" text="datum od" />
+            <Label layoutX="30.0" layoutY="102.0" text="datum do" />
+            <Label layoutX="30.0" layoutY="136.0" text="opis" />
+            <Button layoutX="73.0" layoutY="338.0" mnemonicParsing="false" onAction="#obrisiAkciju" prefHeight="25.0" prefWidth="182.0" text="Obriši akciju" />
+            <Button layoutX="73.0" layoutY="373.0" mnemonicParsing="false" onAction="#zatvoriAkciju" prefHeight="25.0" prefWidth="180.0" text="Zaključaj akciju" />
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

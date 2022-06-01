@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxtemplate.FXMLMpAkcMarketingController">
+   <top>
+      <Pane prefHeight="374.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
+         <children>
+            <TabPane prefHeight="750.0" prefWidth="1300.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Marketinške aktivnosti">
+                     <content>
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <TableView fx:id="tbl_v_akc_marketing" layoutX="375.0" layoutY="32.0" prefHeight="349.0" prefWidth="911.0">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="C1" />
+                                  <TableColumn prefWidth="75.0" text="C2" />
+                                </columns>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </TableView>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4e9ee" height="312.0" layoutX="376.0" layoutY="395.0" stroke="BLACK" strokeType="INSIDE" width="912.0" />
+                              <Label layoutX="392.0" layoutY="405.0" prefHeight="25.0" prefWidth="191.0" text="KORIGUJ ARTIKAL" textFill="#222894">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="57.0" layoutY="7.0" prefHeight="25.0" prefWidth="191.0" text="Lista Akcija" textFill="#222894">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="430.0" layoutY="7.0" prefHeight="25.0" prefWidth="191.0" text="Lista artikala za selektovanu akciju" textFill="#222894">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <TableView fx:id="tbl_lista_akcija" layoutX="14.0" layoutY="32.0" prefHeight="674.0" prefWidth="350.0">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="C1" />
+                                  <TableColumn prefWidth="75.0" text="C2" />
+                                </columns>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                              </TableView>
+                              <ComboBox fx:id="cmb_odabir_artikla" layoutX="471.0" layoutY="461.0" prefHeight="25.0" prefWidth="500.0" />
+                              <ComboBox fx:id="cmb_odabir_tipa_reklame" layoutX="471.0" layoutY="509.0" prefWidth="150.0" />
+                              <Label layoutX="402.0" layoutY="465.0" text="Artikal" />
+                              <Label layoutX="402.0" layoutY="513.0" text="Tip reklame" />
+                              <TextField fx:id="txt_koeficijent" layoutX="472.0" layoutY="565.0" />
+                              <TextArea fx:id="txt_opis" layoutX="471.0" layoutY="619.0" prefHeight="80.0" prefWidth="500.0" />
+                              <Label layoutX="402.0" layoutY="642.0" text="Opis" />
+                              <Label layoutX="402.0" layoutY="569.0" text="Koeficijent" />
+                              <Button layoutX="1078.0" layoutY="638.0" mnemonicParsing="false" onAction="#korigujVrednosti" prefHeight="43.0" prefWidth="92.0" text="Dodaj">
+                                 <effect>
+                                    <DropShadow />
+                                 </effect></Button>
+                           </children>
+                        </Pane>
+                     </content>
+                </Tab>
+                <Tab text="Tip reklame">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4e9ee" height="194.0" layoutX="14.0" layoutY="33.0" stroke="BLACK" strokeType="INSIDE" width="347.0" />
+                              <TableView fx:id="tbl_akc_tip_reklame" layoutX="361.0" layoutY="33.0" prefHeight="345.0" prefWidth="923.0">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="C1" />
+                                  <TableColumn prefWidth="75.0" text="C2" />
+                                </columns>
+                              </TableView>
+                              <TextField fx:id="txt_tip_reklame" layoutX="114.0" layoutY="107.0" />
+                              <Button layoutX="164.0" layoutY="147.0" mnemonicParsing="false" onAction="#dodajAkcTipReklame" text="Dodaj" />
+                              <Label layoutX="44.0" layoutY="111.0" text="Naziv" />
+                              <Label layoutX="775.0" layoutY="2.0" prefHeight="25.0" prefWidth="96.0" text="Tipovi reklame" textFill="#222894">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="32.0" layoutY="39.0" prefHeight="25.0" prefWidth="191.0" text="UNOSI NOVI TIP REKLAME" textFill="#222894">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </Pane>
+   </top>
+</BorderPane>

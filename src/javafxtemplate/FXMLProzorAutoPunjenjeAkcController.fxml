@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxtemplate.FXMLProzorAutoPunjenjeAkcController">
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="tbl_AR" layoutY="68.0" prefHeight="332.0" prefWidth="600.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bec0c3" height="68.0" layoutX="4.0" stroke="BLACK" strokeType="INSIDE" width="592.0" />
+            <Button layoutX="524.0" layoutY="22.0" mnemonicParsing="false" onAction="#prikaziArtikle" text="Pretraži" />
+            <TextField fx:id="AR_txt_pretraga" layoutX="141.0" layoutY="22.0" prefHeight="25.0" prefWidth="369.0" />
+            <Label layoutX="8.0" layoutY="26.0" text="Unesite deo naziva ili ID" />
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

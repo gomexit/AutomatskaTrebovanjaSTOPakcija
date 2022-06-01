@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768" prefWidth="1350" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxtemplate.FXMLPreglediAkcijaController">
+
+    <top>
+      <Pane prefHeight="179.0" prefWidth="1150" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="tabela" prefHeight="169.0" prefWidth="639.0" tableMenuButtonVisible="true">
+               <columns>
+                  <TableColumn fx:id="ID" prefWidth="60.0" resizable="false" text="ID" />
+                  <TableColumn fx:id="TIP_AKCIJE" prefWidth="140.0" resizable="false" text="TIP_AKCIJE" />
+                  <TableColumn fx:id="DATUM_OD" prefWidth="100.0" resizable="false" text="DATUM_OD" />
+                  <TableColumn fx:id="DATUM_DO" prefWidth="100.0" resizable="false" text="DATUM_DO" />
+                  <TableColumn fx:id="STATUS" prefWidth="75.0" text="STATUS" />
+                  <TableColumn fx:id="KOMENTAR" prefWidth="130.0" text="KOMENTAR" />
+               </columns>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </TableView>
+            <ProgressIndicator fx:id="pi" layoutX="1104.0" layoutY="41.0" prefHeight="98.0" prefWidth="122.0" progress="0.0" />
+         </children>
+      </Pane>
+   </top>
+   <center>
+      <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+            <Tab fx:id="tabOJ" closable="false" text="Pregled po OJ">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <top>
+                        <Pane prefHeight="192.0" prefWidth="1350.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <ListView fx:id="listaRadnji" layoutX="14.0" layoutY="37.0" prefHeight="148.0" prefWidth="200.0" />
+                              <Label alignment="TOP_CENTER" disable="true" layoutX="14.0" layoutY="14.0" opacity="0.73" prefHeight="23.0" prefWidth="200.0" text="Odaberite mp objekat" textFill="#39247c">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font></Label>
+                              <GridPane layoutX="236.0" layoutY="80.0" prefHeight="96.0" prefWidth="267.0">
+                                <columnConstraints>
+                                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="85.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="160.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="75.0" text="id artikla" />
+                                    <Label prefHeight="17.0" prefWidth="76.0" text="šifra artikla" GridPane.rowIndex="1" />
+                                    <Label prefHeight="17.0" prefWidth="77.0" text="naziv artikla" GridPane.rowIndex="2" />
+                                    <TextField fx:id="PK_P_id_artikla" GridPane.columnIndex="1" />
+                                    <TextField fx:id="PK_P_sifra" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="PK_P_naziv_artikla" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                 </children>
+                              </GridPane>
+                              <Button layoutX="522.0" layoutY="64.0" mnemonicParsing="false" onAction="#listaIzvestaj3" prefHeight="25.0" prefWidth="174.0" text="Pretraga">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font></Button>
+                              <Button layoutX="522.0" layoutY="96.0" mnemonicParsing="false" onAction="#izvozUExcel" prefHeight="25.0" prefWidth="174.0" text="Izvoz u excel" />
+                              <Button layoutX="522.0" layoutY="124.0" mnemonicParsing="false" onAction="#obrisiPretraguPreporKol" prefHeight="25.0" prefWidth="176.0" text="Poništi pretragu" />
+                              <Button layoutX="523.0" layoutY="151.0" mnemonicParsing="false" onAction="#pozoviAnalitiku" prefHeight="25.0" prefWidth="174.0" text="Analitička kartica">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Button>
+                              <Label fx:id="lblOJ" layoutX="221.0" layoutY="157.0" text="-1" textFill="#21295b">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font></Label>
+                              <GridPane layoutX="936.0" layoutY="32.0" prefHeight="118.0" prefWidth="356.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="164.0" text="Koeficijent obrta" textFill="#251d80">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                    <Label prefHeight="17.0" prefWidth="171.0" text="Prosecan OOS" textFill="#251d80" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                    <Label prefHeight="17.0" prefWidth="167.0" text="Zaliha vrednosno" textFill="#251d80" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                    <Label prefHeight="17.0" prefWidth="162.0" text="Prodaja vrednosno" textFill="#251d80" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                    <Label fx:id="lblKo" text="-" textFill="#bf2020" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                    <Label fx:id="lblProsOOS" text="-" textFill="#bf2020" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                    <Label fx:id="lblZaliha" text="-" textFill="#bf2020" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                    <Label fx:id="lblProdaja" text="-" textFill="#bf2020" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                 </children>
+                              </GridPane>
+                              <Label layoutX="936.0" layoutY="7.0" prefHeight="17.0" prefWidth="397.0" text="PARAMETRI ZA SVE ARTIKLE ODABRANOG MPO" textFill="#1b138a" underline="true">
+                                 <font>
+                                    <Font name="System Bold Italic" size="13.0" />
+                                 </font></Label>
+                              <Label fx:id="lblRad" layoutX="1086.0" layoutY="157.0" prefHeight="17.0" prefWidth="247.0" text="-" />
+                              <Label layoutX="312.0" layoutY="23.0" prefHeight="28.0" prefWidth="149.0" text="OSTALI FILTERI" textFill="#1f1972">
+                                 <font>
+                                    <Font name="System Bold" size="19.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="150.0" layoutX="350.0" layoutY="54.0" startX="-100.0" />
+                           </children></Pane>
+                     </top>
+                     <center>
+                        <TableView fx:id="tblPreporKol" prefHeight="286.0" prefWidth="1350.0" BorderPane.alignment="CENTER">
+                          <columns>
+                            <TableColumn fx:id="PK_ID" prefWidth="38.0" text="ID" />
+                            <TableColumn fx:id="PK_ID_AKCIJE" prefWidth="73.0" text="ID_AKCIJE" />
+                              <TableColumn fx:id="PK_ID_KAMPANJE" prefWidth="94.0" text="ID_KAMPANJE" />
+                              <TableColumn fx:id="PK_ARTIKAL" prefWidth="68.0" text="ARTIKAL" />
+                              <TableColumn fx:id="PK_SIFRA" prefWidth="60.0" text="SIFRA" />
+                              <TableColumn fx:id="PK_NAZIV" prefWidth="149.0" text="NAZIV" />
+                              <TableColumn fx:id="PK_PRIMENJEN_ALGORITAM" prefWidth="137.0" text="PRIMENJEN_ALGORITAM" />
+                              <TableColumn fx:id="PK_PREPORUCENA" prefWidth="75.0" text="PREPORUCENA" />
+                              <TableColumn fx:id="PK_PREPOR_BEZ_KOEF" prefWidth="149.0" text="PREPOR_BEZ_KOEF" />
+                              <TableColumn fx:id="PK_CENA" prefWidth="117.0" text="CENA" />
+                              <TableColumn fx:id="PK_ROBNA_GRUPA" prefWidth="76.0" text="ROBNA_GRUPA" />
+                              <TableColumn fx:id="PK_ORGJED" prefWidth="64.0" text="ORGJED" />
+                              <TableColumn fx:id="PK_NAZIV_ORGJED" prefWidth="164.0" text="NAZIV_ORGJED" />
+                              <TableColumn fx:id="PK_OPIS" prefWidth="87.0" text="OPIS" />
+                          </columns>
+                        </TableView>
+                     </center>
+                  </BorderPane>
+               </content></Tab>
+            <Tab fx:id="tabArtikal" text="Pregled po artiklu">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <TableView fx:id="tblPoOJ" prefHeight="561.0" prefWidth="963.0" BorderPane.alignment="CENTER">
+                          <columns>
+                            <TableColumn fx:id="DT_ORGJED" prefWidth="75.0" text="ORGJED" />
+                            <TableColumn fx:id="DT_RADNJA" prefWidth="75.0" text="RADNJA" />
+                              <TableColumn fx:id="DT_ID_ARTIKLA" prefWidth="75.0" text="ID_ARTIKLA" />
+                              <TableColumn fx:id="DT_SIFRA" prefWidth="75.0" text="SIFRA" />
+                              <TableColumn fx:id="DT_NAZIV_ARTIKLA" prefWidth="75.0" text="NAZIV_ARTIKLA" />
+                              <TableColumn fx:id="DT_BROJ_DOPUNE" prefWidth="75.0" text="BROJ_DOPUNE" />
+                              <TableColumn fx:id="DT_MAGACIN" prefWidth="75.0" text="MAGACIN" />
+                              <TableColumn fx:id="DT_DATUM" prefWidth="75.0" text="DATUM" />
+                              <TableColumn fx:id="DT_MULTIFAKTOR" prefWidth="82.0" text="MULTIFAKTOR" />
+                              <TableColumn fx:id="DT_ZALIHA" prefWidth="89.0" text="ZALIHA" />
+                              <TableColumn fx:id="DT_DATUM_ZALIHE" text="DATUM_ZALIHE" />
+                              <TableColumn fx:id="DT_PREPOR_KOL_DO_ISPORUKE" prefWidth="87.0" text="PREPOR_KOL_DO_ISPORUKE" />
+                              <TableColumn fx:id="DT_PREPOR_KOL_PERIOD" prefWidth="72.0" text="PREPOR_KOL_PERIOD" />
+                              <TableColumn fx:id="DT_NESREDJENA_KOLICINA" prefWidth="83.0" text="NESREDJENA_KOLICINA" />
+                              <TableColumn fx:id="DT_SREDJENA_KOLCINA" prefWidth="62.0" text="SREDJENA_KOLCINA" />
+                              <TableColumn fx:id="DT_PROJEKCIJA_OD" prefWidth="45.0" text="PROJEKCIJA_OD" />
+                              <TableColumn fx:id="DT_PROJEKCIJA_DO" prefWidth="75.0" text="PROJEKCIJA_DO" />
+                              <TableColumn fx:id="DT_RG_ROOT" prefWidth="75.0" text="RG_ROOT" />
+                              <TableColumn fx:id="DT_ID_AKCIJE" prefWidth="75.0" text="ID_AKCIJE" />
+                              <TableColumn fx:id="DT_ID_KAMPANJE" prefWidth="75.0" text="ID_KAMPANJE" />
+                          </columns>
+                        </TableView>
+                     </center>
+                     <left>
+                        <BorderPane prefHeight="560.0" prefWidth="405.0" BorderPane.alignment="CENTER">
+                           <top>
+                              <Pane prefHeight="555.0" prefWidth="425.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button layoutX="9.0" layoutY="58.0" mnemonicParsing="false" onAction="#listaArtikala" prefHeight="25.0" prefWidth="149.0" text="Pretraga">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Button>
+                                    <Button layoutX="8.0" layoutY="86.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Izvoz u excel" />
+                                    <TextField fx:id="DT_P_naziv_artikla" layoutX="9.0" layoutY="31.0" />
+                                    <Label layoutX="37.0" layoutY="10.0" prefHeight="21.0" prefWidth="110.0" text="naziv artikla">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font></Label>
+                                    <TableView fx:id="tblARTIKLI" layoutX="1.0" layoutY="206.0" prefHeight="343.0" prefWidth="406.0">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="C1" />
+                                        <TableColumn prefWidth="75.0" text="C2" />
+                                      </columns>
+                                    </TableView>
+                                    <Button layoutX="9.0" layoutY="110.0" mnemonicParsing="false" onAction="#pozoviAnalitikuIzOJ" prefHeight="25.0" prefWidth="148.0" text="Analitička kartica">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font></Button>
+                                    <GridPane layoutX="203.0" layoutY="10.0" prefHeight="172.0" prefWidth="200.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="102.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="98.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Label text="uk prodaja" textFill="#201e6b">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font></Label>
+                                          <Label text="uk preporuka" textFill="#201e6b" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font></Label>
+                                          <Label text="\% ostvarenja" textFill="#201e6b" GridPane.rowIndex="2">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font></Label>
+                                          <Label text="zaliha" textFill="#201e6b" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font></Label>
+                                          <Label text="nule" textFill="#201e6b" GridPane.rowIndex="5">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font></Label>
+                                          <Label fx:id="lbl2Prodaja" text="0" textFill="#d71b18" GridPane.columnIndex="1">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font></Label>
+                                          <Label fx:id="lbl2Prepor" text="0" textFill="#d71b18" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font></Label>
+                                          <Label fx:id="lbl2Ostvar" text="0" textFill="#d71b18" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font></Label>
+                                          <Label fx:id="lbl2Zaliha" text="0" textFill="#d71b18" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font></Label>
+                                          <Label fx:id="lbl2Nule" text="0" textFill="#d71b18" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font></Label>
+                                          <Label text="KO" textFill="#201e6b" GridPane.rowIndex="4">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font></Label>
+                                          <Label fx:id="lbl2Ko" text="0" textFill="#d71b18" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font></Label>
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </Pane>
+                           </top>
+                        </BorderPane>
+                     </left>
+                  </BorderPane>
+               </content></Tab>
+            <Tab fx:id="tabGrupisano" text="Zbirni pregled">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <TableView fx:id="tblGrupisano" prefHeight="286.0" prefWidth="1350.0" BorderPane.alignment="CENTER">
+                           <columns>
+                              <TableColumn fx:id="PK_ID1" prefWidth="38.0" text="ID" />
+                              <TableColumn fx:id="PK_ID_AKCIJE1" prefWidth="73.0" text="ID_AKCIJE" />
+                              <TableColumn fx:id="PK_ID_KAMPANJE1" prefWidth="94.0" text="ID_KAMPANJE" />
+                              <TableColumn fx:id="PK_ARTIKAL1" prefWidth="68.0" text="ARTIKAL" />
+                              <TableColumn fx:id="PK_SIFRA1" prefWidth="60.0" text="SIFRA" />
+                              <TableColumn fx:id="PK_NAZIV1" prefWidth="149.0" text="NAZIV" />
+                              <TableColumn fx:id="PK_PRIMENJEN_ALGORITAM1" prefWidth="137.0" text="PRIMENJEN_ALGORITAM" />
+                              <TableColumn fx:id="PK_PREPORUCENA1" prefWidth="75.0" text="PREPORUCENA" />
+                              <TableColumn fx:id="PK_PREPOR_BEZ_KOEF1" prefWidth="149.0" text="PREPOR_BEZ_KOEF" />
+                              <TableColumn fx:id="PK_CENA1" prefWidth="117.0" text="CENA" />
+                              <TableColumn fx:id="PK_ROBNA_GRUPA1" prefWidth="76.0" text="ROBNA_GRUPA" />
+                              <TableColumn fx:id="PK_ORGJED1" prefWidth="64.0" text="ORGJED" />
+                              <TableColumn fx:id="PK_NAZIV_ORGJED1" prefWidth="164.0" text="NAZIV_ORGJED" />
+                              <TableColumn fx:id="PK_OPIS1" prefWidth="87.0" text="OPIS" />
+                           </columns>
+                        </TableView>
+                     </center>
+                     <top>
+                        <Pane prefHeight="192.0" prefWidth="1350.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label layoutX="22.0" layoutY="38.0" prefHeight="23.0" prefWidth="200.0" text="Odaberite tip izveštaja" textFill="#1f199e">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font></Label>
+                              <Button layoutX="291.0" layoutY="66.0" mnemonicParsing="false" onAction="#pozoviIzvGrupisano" prefHeight="25.0" prefWidth="174.0" text="Pretraga">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font></Button>
+                              <Button layoutX="291.0" layoutY="99.0" mnemonicParsing="false" onAction="#izvozUExcel" prefHeight="25.0" prefWidth="174.0" text="Izvoz u excel" />
+                              <Button layoutX="291.0" layoutY="127.0" mnemonicParsing="false" onAction="#obrisiPretraguPreporKol" prefHeight="25.0" prefWidth="176.0" text="Poništi pretragu" />
+                              <Button layoutX="292.0" layoutY="154.0" mnemonicParsing="false" onAction="#izGrupnogTabaUAnalitiku" prefHeight="25.0" prefWidth="174.0" text="Analitička kartica">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Button>
+                              <Label fx:id="lblOJ1" layoutX="225.0" layoutY="165.0" text="-1" />
+                              <GridPane layoutX="780.0" layoutY="39.0" prefHeight="111.0" prefWidth="421.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="164.0" text="Koeficijent obrta" textFill="#271e8d" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                    <Label prefHeight="17.0" prefWidth="171.0" text="Prosecan OOS" textFill="#271e8d" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                    <Label prefHeight="17.0" prefWidth="167.0" text="Zaliha vrednosno" textFill="#271e8d" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                    <Label prefHeight="17.0" prefWidth="162.0" text="Prodaja vrednosno" textFill="#271e8d" GridPane.rowIndex="4">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                    <Label fx:id="lblKoUK_A" text="-" textFill="#d71717" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                    <Label fx:id="lblProcOOSUK_A" text="-" textFill="#d71717" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                    <Label fx:id="lblZalihaUK_A" text="-" textFill="#d71717" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                    <Label fx:id="lbl1ProdajaUK_A" text="-" textFill="#d71717" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                    <Label prefHeight="17.0" prefWidth="173.0" text="AUTOMATIKA" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                    <Label prefHeight="17.0" prefWidth="102.0" text="RUCNO" GridPane.columnIndex="2">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                    <Label fx:id="lblKoUK_R" prefHeight="17.0" prefWidth="111.0" text="-" textFill="#d71717" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                    <Label fx:id="lblProcOOSUK_R" prefHeight="17.0" prefWidth="111.0" text="-" textFill="#d71717" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                    <Label fx:id="lblZalihaUK_R" prefHeight="17.0" prefWidth="109.0" text="-" textFill="#d71717" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                    <Label fx:id="lbl1ProdajaUK_R" prefHeight="17.0" prefWidth="109.0" text="-" textFill="#d71717" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                 </children>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="165.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="10.0" prefWidth="116.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                              </GridPane>
+                              <Label layoutX="936.0" layoutY="7.0" prefHeight="17.0" prefWidth="397.0" text="PARAMETRI ZA CELU AKCIJU" textFill="#23246b" underline="true">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font></Label>
+                              <Label fx:id="lblRad1" layoutX="1086.0" layoutY="157.0" prefHeight="17.0" prefWidth="247.0" text="-" />
+                              <ComboBox fx:id="GR_cmb_tip_izv" layoutX="22.0" layoutY="66.0" prefHeight="25.0" prefWidth="214.0" />
+                           </children>
+                        </Pane>
+                     </top>
+                  </BorderPane>
+               </content>
+            </Tab>
+            <Tab fx:id="tabGrupisano1" text="Grafički prikazi">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <top>
+                        <Pane prefHeight="549.0" prefWidth="1350.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label fx:id="lblRad11" layoutX="1086.0" layoutY="157.0" prefHeight="17.0" prefWidth="247.0" text="-" />
+                              <LineChart fx:id="LineChart1" layoutX="14.0" layoutY="14.0" prefHeight="254.0" prefWidth="427.0" title="Trendovi koeficijenta obrta">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis side="LEFT" />
+                                </yAxis>
+                              </LineChart>
+                              <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#napuniDijagrame" text="refresh" textFill="#a11b1b">
+                                 <font>
+                                    <Font name="System Italic" size="14.0" />
+                                 </font></Button>
+                              <LineChart fx:id="LineChart2" blendMode="SRC_ATOP" layoutX="462.0" layoutY="16.0" prefHeight="250.0" prefWidth="444.0" title="Trendovi OOS">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis side="LEFT" />
+                                </yAxis>
+                              </LineChart>
+                              <PieChart fx:id="PieChart1" layoutX="52.0" layoutY="254.0" legendVisible="false" prefHeight="269.0" prefWidth="469.0" title="Učešće artikala u OOS" titleSide="BOTTOM" />
+                              <LineChart fx:id="LineChart3" layoutX="904.0" layoutY="11.0" prefHeight="255.0" prefWidth="432.0" title="KO-poređenje poslednje 3 akcije">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis side="LEFT" />
+                                </yAxis>
+                              </LineChart>
+                              <LineChart fx:id="LineChart4" layoutX="905.0" layoutY="247.0" prefHeight="256.0" prefWidth="431.0" title="OOS- poredjenje poslednje 3 akcije" titleSide="BOTTOM">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis side="LEFT" />
+                                </yAxis>
+                              </LineChart>
+                           </children>
+                        </Pane>
+                     </top>
+                  </BorderPane>
+               </content>
+            </Tab>
+            <Tab fx:id="tabGrupisano11" text="Grafički prikazi po OJ">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <top>
+                        <Pane prefHeight="549.0" prefWidth="1350.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label fx:id="lblRad111" layoutX="1086.0" layoutY="157.0" prefHeight="17.0" prefWidth="247.0" text="-" />
+                              <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#vratiTrendKOPoMPO" text="refresh" textFill="#a11b1b">
+                                 <font>
+                                    <Font name="System Italic" size="14.0" />
+                                 </font>
+                              </Button>
+                              <LineChart fx:id="LineChartKOpoOJTrend" layoutX="272.0" layoutY="57.0" prefHeight="484.0" prefWidth="546.0" title="KO-poređenje poslednje 3 akcije">
+                                 <xAxis>
+                                    <CategoryAxis side="BOTTOM" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis side="LEFT" />
+                                 </yAxis>
+                              </LineChart>
+                              <LineChart fx:id="LineChartOOSpoOJ" layoutX="833.0" layoutY="57.0" prefHeight="484.0" prefWidth="507.0" title="OOS- poredjenje poslednje 3 akcije">
+                                 <xAxis>
+                                    <CategoryAxis side="BOTTOM" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis side="LEFT" />
+                                 </yAxis>
+                              </LineChart>
+                              <TableView fx:id="tblListaSvihMPO" layoutX="10.0" layoutY="74.0" prefHeight="441.0" prefWidth="225.0">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="C1" />
+                                  <TableColumn prefWidth="75.0" text="C2" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </Pane>
+                     </top>
+                  </BorderPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>

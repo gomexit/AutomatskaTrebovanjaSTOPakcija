@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="JavaFXTemplate_testiranjePU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>javafxtemplate.BMpAkcTrebovanjeZag</class>
+    <class>javafxtemplate.BMpAkcTrebovanjeStavke</class>
+    <class>javafxtemplate.BMpAkcijeStavkeAsw</class>
+    <class>javafxtemplate.BMpAkcije</class>
+    <class>javafxtemplate.BVMpAkcijeStavkeAsw</class>
+    <class>javafxtemplate.BVMpAkcKandidatiZaAkc</class>
+    <class>javafxtemplate.BVMpAkcMatricaRazvozaDop</class>
+    <class>javafxtemplate.BVMpAkcPreporKol</class>
+    <class>javafxtemplate.BVMpAkcDopunskaTrebovanja</class>
+    <class>javafxtemplate.BVMpAkcPreporKolTemp</class>
+    <class>javafxtemplate.BVMpAkcRazvozPrvoPunj</class>
+    <class>javafxtemplate.BVMpAkcErrorLog</class>
+    <class>javafxtemplate.BVMpAkcNedostajuciArtikli</class>
+    <class>javafxtemplate.BVMpAkcTrebovanje</class>
+    <class>javafxtemplate.BVMpAkcNazVred</class>
+    <class>javafxtemplate.BVMpAkcNazivVredX7</class>
+    <class>javafxtemplate.BVMpAkcNazivVredX9</class>
+    <class>javafxtemplate.BVMpAkcSpecificniDaniRg</class>
+    <class>javafxtemplate.BMpAkcSpecificniDani</class>
+    <class>javafxtemplate.BVMpAkcSpecificniDaniOj</class>
+    <class>javafxtemplate.BMpAkcSpecificniDaniOj</class>
+    <class>javafxtemplate.BMpAkcSpecificniDaniRg</class>
+    <class>javafxtemplate.BVMpAkcNazivVredX11</class>
+    <class>javafxtemplate.BVMpAkcRadnje</class>
+    <class>javafxtemplate.BMpAkcRadnje</class>
+    <class>javafxtemplate.BVMpAkcRgSifarnik</class>
+    <class>javafxtemplate.BMpAkcZamenski2</class>
+    <class>javafxtemplate.BVMpAkcZamenski2</class>
+    <class>javafxtemplate.BVMpAkcArtikli</class>
+    <class>javafxtemplate.BVMpAkcUcesceDanOj</class>
+    <class>javafxtemplate.BVMpAkcRucneKorekcije</class>
+    <class>javafxtemplate.BVMpAkcSpecDanRgOj</class>
+    <class>javafxtemplate.BMpAkcSpecificniDaniRgOj</class>
+    <class>javafxtemplate.BMpAkcSpecificniDaniArt</class>
+    <class>javafxtemplate.BVMpAkcSpecDaniArt</class>
+    <class>javafxtemplate.BVMpAkcSveRadnje</class>
+    <class>javafxtemplate.BVMpAkcOdeljenja</class>
+    <class>javafxtemplate.BVMpAkcAlgoritmi</class>
+    <class>javafxtemplate.BVMpAkcIzvestajiStavke</class>
+    <class>javafxtemplate.BMpAkcIzvestajiStavke</class>
+    <class>javafxtemplate.BMpAkcIzvestaji</class>
+    <class>javafxtemplate.BVMpAkcSekundarnePozicije</class>
+    <class>javafxtemplate.BMpAkcSekundPozicije</class>
+    <class>javafxtemplate.BVMpAkcIzvIskljArtik</class>
+    <class>javafxtemplate.BMpAkcIzvestajiIskljArtik</class>
+    <class>javafxtemplate.BVMpAkcSekundarnePlacene</class>
+    <class>javafxtemplate.BMpAkcSekundarnePlacene</class>
+    <class>javafxtemplate.BVMpAkcArtikBezPlSek</class>
+    <class>javafxtemplate.BVMpAkcArtikBezIsljuc</class>
+    <class>javafxtemplate.BVMpAkcNazivVredX15</class>
+    <class>javafxtemplate.BVArtikli</class>
+    <class>javafxtemplate.BVMpAkcMarketing</class>
+    <class>javafxtemplate.BMpAkcTipReklame</class>
+    <class>javafxtemplate.BMpAkcMarketing</class>
+    <class>javafxtemplate.BMpvAkcijeArtikli</class>
+    <class>javafxtemplate.BVMpvAkcijeArtikal</class>
+    <class>javafxtemplate.BMpvAkcije</class>
+    <class>javafxtemplate.BMpvAkcTrebovanjeStavkDop</class>
+    <class>javafxtemplate.BMpvAkcijeTrebovanjeDopuna</class>
+    <class>javafxtemplate.BMpvAkcTrebovanjeZagDop</class>
+    <class>javafxtemplate.BVMpvAkcijeArtikli</class>
+    <class>javafxtemplate.BVMpvAkcMatricaRazvozDop</class>
+    <class>javafxtemplate.BVMpvAkcDopunskaTrebovanj</class>
+    <class>javafxtemplate.BMpAkcIzvestajiIskljMpo</class>
+    <class>javafxtemplate.BVMpAkcMpoBezIsljuc</class>
+    <class>javafxtemplate.BVMpAkcIzvIskljMpo</class>
+    <class>javafxtemplate.BMpAkcAriojIskljizAkc</class>
+    <class>javafxtemplate.BVMpAkcAriojIskljizAkc</class>
+    <class>javafxtemplate.BVMpAkcPlanogramPretraga</class>
+    <class>javafxtemplate.BVMpAkcRucnePreporuke</class>
+    <class>javafxtemplate.BVMpAkcArtikStop</class>
+    <class>javafxtemplate.BMpAkcijePreporKol</class>
+    <class>javafxtemplate.BMpAkcMinimalneKolicine</class>
+    <class>javafxtemplate.BVMpAkcMinKol</class>
+    <class>javafxtemplate.BVMpAkcTrebovanjeArh</class>
+    <class>javafxtemplate.BVMpAkcDopunskaTreboArh</class>
+    <class>javafxtemplate.BVMpAkcPreporKolTemArh</class>
+    <class>javafxtemplate.BVMpAkcPreporKolArh</class>
+    <class>javafxtemplate.BVMpAkcRucneDopune</class>
+    <class>javafxtemplate.MBMpAkcijeMaxKolicine</class>
+    <class>javafxtemplate.CompositePrimaryKeys.MBMpAkcijeMaxKolicinePK</class>
+    <class>javafxtemplate.MBMpAkcijeMaxZalihe</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@//10.3.0.246:1521/gom.gomex.local"/>
+      <property name="javax.persistence.jdbc.user" value="rouser"/>
+      <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+      <property name="javax.persistence.jdbc.password" value="floret"/>
+    </properties>
+  </persistence-unit>
+</persistence>

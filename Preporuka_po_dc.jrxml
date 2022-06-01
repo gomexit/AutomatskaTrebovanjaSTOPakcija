@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Preporuka_po_dc" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2c9fe1bd-1097-489b-88f1-41d3a366639e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<subDataset name="Preporuka_po_dc" uuid="8cc745a3-5cf7-4ecf-8169-aaa3ecd1bd02">
+		<parameter name="P_ID" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT ar.naziv||'-'||ar.sifra||'-'||ar.id as artikal, oj.naziv||'-' ||oj.sifra as magacin,sum(preporucena) as preporucena
+FROM B_MP_AKCIJE_PREPOR_KOL a, b_mp_akcije_stavke_asw b,b_mp_akc_radnje r, iis.orgjed oj, iis.artikli ar
+WHERE a.ARTIKAL=ar.id
+and a.orgjed=r.orgjed
+and b.id_akcije=a.id_akcije
+and a.id_kampanje=b.id_kampanje
+and b.id=$P{P_ID}
+and  b_mp_akc_vrati_magacin(A.ARTIKAL,r.DC)=oj.sifra
+and oj.sifra not in ('137','138')
+group by ar.naziv||'-'||ar.sifra||'-'||ar.id ,oj.naziv||'-' ||oj.sifra
+order by 1]]>
+		</queryString>
+		<field name="ARTIKAL" class="java.lang.String"/>
+		<field name="MAGACIN" class="java.lang.String"/>
+		<field name="PREPORUCENA" class="java.math.BigDecimal"/>
+	</subDataset>
+	<parameter name="P_ID" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select 1
+from dual]]>
+	</queryString>
+	<field name="1" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="65" splitType="Stretch">
+			<staticText>
+				<reportElement x="41" y="17" width="404" height="31" uuid="a9b676ed-ee14-4743-8b15-e563fb772f95"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Preled preporuka po magacinima veleprodaje -  akcija -]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="445" y="17" width="100" height="31" uuid="b8ca9e99-ec77-4cc7-9079-865bad809634"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{P_ID}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="239" splitType="Stretch">
+			<crosstab>
+				<reportElement x="0" y="0" width="555" height="239" uuid="17d2ed79-89a2-4dcf-9adb-4f2988ed2227"/>
+				<crosstabDataset>
+					<dataset>
+						<datasetRun subDataset="Preporuka_po_dc" uuid="14439383-5f29-4492-9270-feaf1300597e">
+							<datasetParameter name="P_ID">
+								<datasetParameterExpression><![CDATA[$P{P_ID}]]></datasetParameterExpression>
+							</datasetParameter>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+					</dataset>
+				</crosstabDataset>
+				<rowGroup name="ARTIKAL" width="244">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{ARTIKAL}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="244" height="25" uuid="1a56950a-31b7-409c-95ab-13294bd5a646"/>
+								<box leftPadding="4"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font size="8" pdfEncoding="Cp1250"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{ARTIKAL}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="MAGACIN" height="45" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{MAGACIN}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="82" height="45" uuid="c4dcf331-b77f-455b-a017-bfd6d1bc128f"/>
+								<textElement verticalAlignment="Middle">
+									<font size="8" pdfEncoding="Cp1250"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{MAGACIN}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="50" height="45" uuid="5b893585-b4cb-4d6a-be59-cdbbb85b77a3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<text><![CDATA[Total MAGACIN]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="PREPORUCENAMeasure" class="java.math.BigDecimal" calculation="Sum">
+					<measureExpression><![CDATA[$F{PREPORUCENA}]]></measureExpression>
+				</measure>
+				<crosstabCell width="82" height="25">
+					<cellContents>
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField pattern="#,##0.00">
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="82" height="25" uuid="0ce8d3cb-faff-46e9-ac97-1a858ea4505d"/>
+							<box rightPadding="4"/>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font size="8"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{PREPORUCENAMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell height="25" rowTotalGroup="ARTIKAL">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="48cd4005-7f69-46e6-9bc2-b73224690b05"/>
+							<textFieldExpression><![CDATA[$V{PREPORUCENAMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="50" columnTotalGroup="MAGACIN">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField pattern="#,##0.00">
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="3de7a808-7588-4bad-86be-c9f87498d5fb"/>
+							<box rightPadding="4"/>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font size="8"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{PREPORUCENAMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="ARTIKAL" columnTotalGroup="MAGACIN">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="e4b53119-ab75-4e6f-9a74-bcd1a636f453"/>
+							<textFieldExpression><![CDATA[$V{PREPORUCENAMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</detail>
+	<summary>
+		<band height="64" splitType="Stretch"/>
+	</summary>
+</jasperReport>

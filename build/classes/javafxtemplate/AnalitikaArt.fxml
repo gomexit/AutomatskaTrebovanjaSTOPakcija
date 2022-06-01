@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="524.0" prefWidth="943.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxtemplate.AnalitikaArtController">
+   <top>
+      <HBox prefHeight="44.0" prefWidth="682.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="lblArtikal" prefHeight="25.0" prefWidth="429.0" text="Label" />
+            <Label fx:id="lblOJ" alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="501.0" text="Label" textFill="#d71212">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font></Label>
+         </children>
+      </HBox>
+   </top>
+   <right>
+      <BorderPane prefHeight="370.0" prefWidth="683.0" BorderPane.alignment="CENTER">
+         <center>
+            <TableView fx:id="tblAnaliticka" prefHeight="428.0" prefWidth="727.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+         </center>
+         <top>
+            <Label fx:id="lblNazivIzvestaja" prefHeight="52.0" prefWidth="495.0" text="ANALITIČKA KARTICA PO DANIMA" textAlignment="CENTER" textFill="#3b339a" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Label>
+         </top>
+         <right>
+            <Pane prefHeight="428.0" prefWidth="177.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="19.0" layoutY="333.0" prefHeight="17.0" prefWidth="140.0" text="Odaberite magacin VP" />
+                  <ComboBox fx:id="cmbMagVP" layoutX="3.0" layoutY="357.0" prefHeight="25.0" prefWidth="171.0" />
+                  <Button layoutX="3.0" layoutY="389.0" mnemonicParsing="false" onAction="#pozoviReportAnalitickaVP" prefHeight="25.0" prefWidth="171.0" text="Štampaj karticu" />
+                  <Label layoutX="17.0" layoutY="306.0" prefHeight="17.0" prefWidth="147.0" text="ANALITICKA VP KARTICA" textFill="#0d1bab">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="4.0" layoutY="28.0" mnemonicParsing="false" onAction="#pozoviAnaliticku" prefHeight="25.0" prefWidth="172.0" text="Analitička po danima" textFill="#2d1d86">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="4.0" layoutY="57.0" mnemonicParsing="false" onAction="#pozoviAnalitickuPoMesecima" prefHeight="25.0" prefWidth="172.0" text="Analitička po mesecima" textFill="#1d1f65">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="4.0" layoutY="86.0" mnemonicParsing="false" onAction="#pozoviAnalitickuZaSveMPO" prefHeight="25.0" prefWidth="171.0" text="Analitička za sve MPO" textFill="#222894">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+         </right>
+      </BorderPane>
+   </right>
+   <left>
+      <BorderPane prefHeight="480.0" prefWidth="261.0" BorderPane.alignment="CENTER">
+         <top>
+            <TableView fx:id="tblArtikalAnalitika" prefHeight="301.0" prefWidth="253.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="PK_NAZIV" prefWidth="75.0" text="C1" />
+                <TableColumn fx:id="PK_VREDNOST" prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+         </top>
+         <bottom>
+            <TextArea fx:id="PK_opis" prefHeight="179.0" prefWidth="261.0" text="ovo je text" wrapText="true" BorderPane.alignment="CENTER" />
+         </bottom>
+      </BorderPane>
+   </left>
+</BorderPane>

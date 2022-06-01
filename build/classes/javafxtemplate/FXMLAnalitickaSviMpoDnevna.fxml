@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxtemplate.FXMLAnalitickaSviMpoDnevnaController">
+   <top>
+      <Pane prefHeight="83.0" prefWidth="1400.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="291.0" layoutY="14.0" prefHeight="36.0" prefWidth="327.0" text="ANALITIČKA KARTICA PO DANIMA ZA SVE MPO" textFill="#222894">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblNazivArtikla" alignment="CENTER" layoutX="223.0" layoutY="56.0" prefHeight="17.0" prefWidth="464.0" text="Label" textAlignment="CENTER" textFill="#166f1c">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </top>
+   <right>
+      <Pane prefHeight="497.0" prefWidth="887.0" BorderPane.alignment="CENTER">
+         <children>
+            <LineChart fx:id="LineChart1" layoutX="6.0" layoutY="14.0" prefHeight="329.0" prefWidth="448.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <LineChart fx:id="LineChart2" layoutX="446.0" layoutY="8.0" prefHeight="335.0" prefWidth="427.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <LineChart fx:id="LineChart3" layoutX="8.0" layoutY="357.0" prefHeight="274.0" prefWidth="475.0">
+               <xAxis>
+                  <CategoryAxis side="BOTTOM" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis side="LEFT" />
+               </yAxis>
+            </LineChart>
+            <BarChart fx:id="BarChart4" layoutX="448.0" layoutY="344.0" prefHeight="287.0" prefWidth="424.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
+         </children>
+      </Pane>
+   </right>
+   <left>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="tblAnaliticka" prefHeight="371.0" prefWidth="576.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#edeff2" height="282.0" layoutX="8.0" layoutY="378.0" stroke="BLACK" strokeType="INSIDE" width="569.0" />
+            <GridPane layoutX="41.0" layoutY="404.0" prefHeight="219.0" prefWidth="271.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="164.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.0" minWidth="10.0" prefWidth="107.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Koeficijent obrta" GridPane.rowIndex="3" />
+                  <Label text="Out of stock" GridPane.rowIndex="4" />
+                  <Label prefHeight="17.0" prefWidth="156.0" text="Izgubljena prodaja - kom" GridPane.rowIndex="5" />
+                  <Label text="Izgubljena prodaja - din" GridPane.rowIndex="6" />
+                  <Label prefHeight="17.0" prefWidth="131.0" text="Ukupna preporuka" GridPane.rowIndex="8" />
+                  <Label prefHeight="17.0" prefWidth="152.0" text="Ostvarenje preporuke" GridPane.rowIndex="9" />
+                  <Label text="Prodaja kom" GridPane.rowIndex="1" />
+                  <Label text="Akcijska cena" />
+                  <Label text="Prodaja din" GridPane.rowIndex="2" />
+                  <Label fx:id="L_akc_cena" alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="92.0" text="Label" textFill="#222894" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="L_prodaja_kom" alignment="CENTER_RIGHT" prefWidth="92.0" text="Label" textFill="#222894" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="L_prodaja_din" alignment="CENTER_RIGHT" prefWidth="92.0" text="Label" textFill="#222894" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="L_ko" alignment="CENTER_RIGHT" prefWidth="92.0" text="Label" textFill="#222894" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="L_oos" alignment="CENTER_RIGHT" prefWidth="92.0" text="Label" textFill="#222894" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="L_izgub_prodaja_kom" alignment="CENTER_RIGHT" prefWidth="92.0" text="Label" textFill="#222894" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="L_izgub_prodaja_din" alignment="CENTER_RIGHT" prefWidth="92.0" text="Label" textFill="#222894" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="L_uk_preporuka" alignment="CENTER_RIGHT" prefWidth="92.0" text="Label" textFill="#222894" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="L_ostvarenje_preporuke" alignment="CENTER_RIGHT" prefWidth="92.0" text="Label" textFill="#222894" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label text="Izgubljena prodaja - %" GridPane.rowIndex="7" />
+                  <Label fx:id="L_izgub_prodaja_proc" alignment="CENTER_RIGHT" prefWidth="92.0" text="Label" textFill="#222894" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+   </left>
+</BorderPane>

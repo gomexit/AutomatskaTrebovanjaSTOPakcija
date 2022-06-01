@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AT-neposlate instance" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5c19ad26-0f4f-4c9c-b1cd-1ecb2e429b37">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Po_artiklima" uuid="6e05ea96-1c4a-4af4-b5f3-8b1c75c0471c">
+		<parameter name="P_ID_ARTIKLA" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT FF.ID_ARTIKLA,AR.NAZIV,COUNT(*) AS BROJ_OBJEKATA
+FROM
+(
+    SELECT EE.ORGJED,EE.id_artikla,SUM(KOLICINA) AS KOLICINA
+    FROM
+    (
+
+        SELECT A.ORGJED,A.id_artikla, SUM(A.sredjena_kolicina) AS KOLICINA
+        FROM B_MP_AKCIJE_TREBOVANJE A, B_MP_AKCIJE_STAVKE_ASW M
+        WHERE A.id_akcije=M.id_akcije
+        AND A.id_kampanje=M.id_kampanje
+        AND M.ID=$P{P_ID_ARTIKLA}
+        GROUP BY A.ORGJED,A.id_artikla
+
+        UNION
+
+        SELECT C.ORGJED,C.id_artikla, SUM(C.sredjena_kolicina) AS KOLICINA
+        FROM B_MP_AKCIJE_TREBOVANJE_DOPUNA C
+        WHERE C.ID=$P{P_ID_ARTIKLA}
+        GROUP BY C.ORGJED,C.id_artikla
+    ) EE
+    GROUP BY EE.ORGJED,EE.id_artikla
+    HAVING SUM(KOLICINA)=0
+) FF, IIS.ARTIKLI AR
+WHERE FF.ID_ARTIKLA=AR.ID
+GROUP BY FF.ID_ARTIKLA,AR.NAZIV
+HAVING COUNT(*)>9
+ORDER BY 3 DESC]]>
+		</queryString>
+		<field name="ID_ARTIKLA" class="java.math.BigDecimal"/>
+		<field name="NAZIV" class="java.lang.String"/>
+		<field name="BROJ_OBJEKATA" class="java.math.BigDecimal"/>
+	</subDataset>
+	<subDataset name="Po_objektima" uuid="346c1270-bd03-404a-988f-e854728363fe">
+		<parameter name="P_ID_ARTIKLA" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT FF.ORGJED,OJ.NAZIV,COUNT(*) AS BROJ_ARTIKALA
+FROM
+(
+    SELECT EE.ORGJED,EE.id_artikla,SUM(KOLICINA) AS KOLICINA
+    FROM
+    (
+
+        SELECT A.ORGJED,A.id_artikla, SUM(A.sredjena_kolicina) AS KOLICINA
+        FROM B_MP_AKCIJE_TREBOVANJE A, B_MP_AKCIJE_STAVKE_ASW M
+        WHERE A.id_akcije=M.id_akcije
+        AND A.id_kampanje=M.id_kampanje
+        AND M.ID=$P{P_ID_ARTIKLA}
+        GROUP BY A.ORGJED,A.id_artikla
+
+        UNION
+
+        SELECT C.ORGJED,C.id_artikla, SUM(C.sredjena_kolicina) AS KOLICINA
+        FROM B_MP_AKCIJE_TREBOVANJE_DOPUNA C
+        WHERE C.ID=$P{P_ID_ARTIKLA}
+        GROUP BY C.ORGJED,C.id_artikla
+    ) EE
+    GROUP BY EE.ORGJED,EE.id_artikla
+    HAVING SUM(KOLICINA)=0
+) FF, IIS.ORGJED OJ
+WHERE FF.ORGJED=OJ.SIFRA
+GROUP BY FF.ORGJED,OJ.NAZIV
+HAVING COUNT(*)>9
+ORDER BY 3 DESC]]>
+		</queryString>
+		<field name="ORGJED" class="java.lang.String"/>
+		<field name="NAZIV" class="java.lang.String"/>
+		<field name="BROJ_ARTIKALA" class="java.math.BigDecimal"/>
+	</subDataset>
+	<parameter name="p_id_akcije" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select 1 from dual]]>
+	</queryString>
+	<field name="1" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement x="71" y="11" width="389" height="43" uuid="ac5f7e67-c75f-4057-9b46-1200e81a9500"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true" isUnderline="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Artikli i objekti u kojima u STOP akciji nije ništa poslato]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="205" y="74" width="66" height="20" uuid="7a5e8ff5-9f08-4255-a926-d35ea75f98de"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[id akcije]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="272" y="74" width="42" height="20" uuid="8e243816-053b-490d-81c8-029e1ea8a21b"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{p_id_akcije}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="194" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table" style="table" x="11" y="29" width="411" height="50" uuid="4d7ab819-11a3-4acc-9013-e731fc92969c"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Po_artiklima" uuid="1d343cf6-0490-463c-9eeb-41c331254194">
+						<datasetParameter name="P_ID_ARTIKLA">
+							<datasetParameterExpression><![CDATA[$P{p_id_akcije}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="71" uuid="55947864-2d96-4cc4-a628-57b017374bac">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="71" height="30" uuid="22dc4391-c020-47b9-8266-094932110f7d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[ID_ARTIKLA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="71" height="20" uuid="8d99ccb7-7890-4eea-ab9b-b6f23a7e335c"/>
+								<box leftPadding="3"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{ID_ARTIKLA}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="243" uuid="8fbb415d-f7d5-4b30-bd90-40205748e392">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="243" height="30" uuid="80c925e6-7f4c-49ad-a2f8-f035a6fda88e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[NAZIV]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="243" height="20" uuid="cdc694f6-09e8-49f9-bdd8-a8684e8a82fd"/>
+								<box leftPadding="3"/>
+								<textElement verticalAlignment="Middle">
+									<font pdfEncoding="Cp1250"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{NAZIV}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="22cc50d2-4f12-43da-bf39-07219a8e7775">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="0d59393d-dfbc-47e5-9624-a8b6fe35603f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[BROJ_OBJEKATA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="3f62fb93-df36-4b0d-9094-c53d3b14806d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{BROJ_OBJEKATA}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" positionType="Float" x="11" y="132" width="411" height="50" uuid="61749f27-c027-42b7-a6ca-f46a22050bb3"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Po_objektima" uuid="f710aefb-f7ab-4bf3-9030-4e816714e419">
+						<datasetParameter name="P_ID_ARTIKLA">
+							<datasetParameterExpression><![CDATA[$P{p_id_akcije}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="20d1b276-a2af-4c5c-b23a-f89783c9ab33">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="744dfac1-ce88-4512-98f4-f432965a2464"/>
+								<textElement verticalAlignment="Middle"/>
+								<text><![CDATA[ORGJED]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="680c0f41-a050-40b3-9ed9-e7d86f5b56aa"/>
+								<box leftPadding="3"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{ORGJED}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="167" uuid="ebf4a1f8-3efb-420d-95e8-0b48209d5595">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="167" height="30" uuid="830ef6ed-8588-4b1f-b480-7ffef8f02374"/>
+								<textElement verticalAlignment="Middle"/>
+								<text><![CDATA[NAZIV]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="167" height="20" uuid="19c185a1-3572-441e-96e0-3b039b2b9f66"/>
+								<box leftPadding="3"/>
+								<textElement verticalAlignment="Middle">
+									<font pdfEncoding="Cp1250"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{NAZIV}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="383597e6-5a1e-4736-b943-8cffcbd3b53b">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="ada065e7-7340-4057-906c-7343c6a64a76"/>
+								<textElement verticalAlignment="Middle"/>
+								<text><![CDATA[BROJ_ARTIKALA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="430a96b1-193e-4849-a3ee-26fb5468a263"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{BROJ_ARTIKALA}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<break>
+				<reportElement positionType="Float" x="0" y="89" width="100" height="1" uuid="f66daedd-32ca-44f8-830b-da527346616f"/>
+			</break>
+			<staticText>
+				<reportElement x="16" y="10" width="222" height="20" uuid="e2fb11be-280b-4a46-acd3-9bc0609850f8"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PO ARTIKLU]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="16" y="112" width="222" height="20" uuid="7d8e25b2-bc4b-4fa7-b7f0-bf84b13198fd"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PO MP OBJEKTU]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

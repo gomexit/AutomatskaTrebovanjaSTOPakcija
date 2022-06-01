@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AT-kriticne_sek_pozicije" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="300681c2-9bc4-4630-a06f-2d6a81ec9ce4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="kriticne" uuid="7a683ebf-53c3-4f30-9c2b-b13158673b6d">
+		<parameter name="p_id" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT AR.NAZIV||'-'||ar.sifra||'-'||ar.id as artikal,
+OJ.NAZIV||'-'||OJ.SIFRA as mpo,KOLICINA_PROD,S.KOLICINA AS KOLICINA_SEKUNDARNA,
+ROUND(100*KOLICINA_PROD/S.KOLICINA,2) AS PROC_PROD_OD_SEKUND
+FROM
+(
+SELECT ID_AKC AS ID_AKCIJE,ID_KAMPANJE,ARTIKAL,ORGJED, SUM(KOL_PROMET) AS KOLICINA_PROD
+FROM Z_V_OBRT Z
+WHERE Z.ID_AKCIJE=$P{p_id}
+GROUP BY ID_AKC ,ID_KAMPANJE,ARTIKAL,ORGJED
+) ZZ,b_mp_akc_sekund_pozicije S, IIS.ORGJED OJ , IIS.ARTIKLI AR
+WHERE ZZ.ID_AKCIJE=S.ID_AKCIJE
+AND ZZ.ID_KAMPANJE=S.ID_KAMPANJE
+AND ZZ.ARTIKAL=S.ARTIKAL
+AND ZZ.ORGJED=S.ORGJED
+AND S.KOLICINA>ZZ.KOLICINA_PROD
+AND OJ.SIFRA=ZZ.ORGJED
+AND AR.ID=ZZ.ARTIKAL
+ORDER BY 5]]>
+		</queryString>
+		<field name="ARTIKAL" class="java.lang.String"/>
+		<field name="MPO" class="java.lang.String"/>
+		<field name="KOLICINA_PROD" class="java.math.BigDecimal"/>
+		<field name="KOLICINA_SEKUNDARNA" class="java.math.BigDecimal"/>
+		<field name="PROC_PROD_OD_SEKUND" class="java.math.BigDecimal"/>
+	</subDataset>
+	<parameter name="P_ID" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select *
+from dual]]>
+	</queryString>
+	<field name="DUMMY" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="23" y="12" width="398" height="37" uuid="9cbb2613-1001-431d-b6ec-b336708634d1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[KRITIČNE SEKUNDARNE POZICIJE U ODNOSU NA PRODAJU]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="452" y="30" width="100" height="19" uuid="393d5c8f-36c5-4365-983d-0292ba395df1"/>
+				<textFieldExpression><![CDATA[$P{P_ID}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="452" y="10" width="100" height="20" uuid="b3a93736-6b8d-43ed-a870-57f4969c7557"/>
+				<text><![CDATA[AKCIJA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table 3" style="table 3" x="16" y="33" width="484" height="50" uuid="c9620a17-b1c2-4d06-93af-ddd2bd205a65"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="kriticne" uuid="5110a0d2-4e13-4f61-85b0-121a0d157138">
+						<datasetParameter name="p_id">
+							<datasetParameterExpression><![CDATA[$P{P_ID}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="262" uuid="3a46f6c7-3875-47bf-b032-25a61d75efb8">
+						<jr:columnHeader style="table 3_CH" height="40" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="262" height="40" uuid="239b50c5-b2a0-4f7c-8c00-a47cf2bfb78b"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[ARTIKAL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="262" height="20" uuid="d2755499-3586-4436-a2bd-5c95022b6f84"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="7" pdfEncoding="Cp1250"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ARTIKAL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="101" uuid="f348b0c8-aeb3-48ba-b520-2a461181b0a4">
+						<jr:columnHeader style="table 3_CH" height="40" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="101" height="40" uuid="ba975224-98de-4f05-ae69-7d34af8581d4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[MPO]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="101" height="20" uuid="003419ed-52e8-490f-8d1e-4bc5f8b7156f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" pdfEncoding="Cp1250"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{MPO}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="44" uuid="4ec01b78-5573-45aa-b1b1-5487f16b1739">
+						<jr:columnHeader style="table 3_CH" height="40" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="44" height="40" uuid="afcb19ec-321f-43d9-b7b7-ca668f5e0aee"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[prodaja  kol]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="44" height="20" uuid="a5b5d5f7-98b4-42a9-96f0-830c32bb3988"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" pdfEncoding="Cp1250"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{KOLICINA_PROD}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="46" uuid="95d1d417-3c1a-47b6-9157-16876ff3e412">
+						<jr:columnHeader style="table 3_CH" height="40" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="46" height="40" uuid="32e24a0f-6f72-423a-b53b-772fc95aac77"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[sekundarna kol]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="46" height="20" uuid="5b59ffb9-2052-4bfc-888f-c9e089246333"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" pdfEncoding="Cp1250"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{KOLICINA_SEKUNDARNA}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="52" uuid="ce1a6c65-9916-42f6-91dc-22a70ae9d697">
+						<jr:columnHeader style="table 3_CH" height="40" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="52" height="40" uuid="6a75392b-5acb-481e-a562-ce726b0a051b"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[% prod od sekundarnih]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="52" height="20" uuid="13e9b5c1-90e3-4b80-a9e4-402737acddac"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" pdfEncoding="Cp1250"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PROC_PROD_OD_SEKUND}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Uporedi_planograme_i_prepor_kol" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2c9fe1bd-1097-489b-88f1-41d3a366639e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Poredjenje_planograma_i_prepor" uuid="782c5f5c-a12d-42a8-ba22-edb5f6b71913">
+		<parameter name="P_ID" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT   AR.ID, AR.SIFRA, AR.naziv AS ARTIKAL,
+              OJ.OTAC AS TIP_OBJEKTA,
+              round(avg(P.preporucena),2) as preporucena, avg(PL.kolicina) AS PLANOGRAM,
+              ROUND (avg(PL.kolicina) / avg(P.preporucena), 2) AS odnos_planogram_preporuka
+     FROM   B_MP_AKCIJE A, B_MP_AKCIJE_STAVKE_ASW B, B_MP_AKCIJE_PREPOR_KOL P,
+              IIS.ORGJED OJ, IIS.ARTIKLI AR, b_mp_akcije_planogram PL
+    WHERE       A.id = B.id
+              AND P.orgjed = OJ.sifra
+              AND P.artikal = AR.id
+              AND P.id_kampanje = B.id_kampanje
+              AND P.id_akcije = B.id_akcije
+              AND A.id = $P{P_ID}
+              AND PL.artikal = P.artikal
+              AND OJ.otac = PL.grupa
+         --     AND PREPORUCENA < PL.KOLICINA
+           group by    AR.ID, AR.SIFRA, AR.naziv , OJ.OTAC
+           having  ROUND (avg(PL.kolicina) / avg(P.preporucena), 2)>1
+
+ORDER BY   3, 5]]>
+		</queryString>
+		<field name="ID" class="java.math.BigDecimal"/>
+		<field name="SIFRA" class="java.lang.String"/>
+		<field name="ARTIKAL" class="java.lang.String"/>
+		<field name="TIP_OBJEKTA" class="java.lang.String"/>
+		<field name="PREPORUCENA" class="java.math.BigDecimal"/>
+		<field name="PLANOGRAM" class="java.math.BigDecimal"/>
+		<field name="ODNOS_PLANOGRAM_PREPORUKA" class="java.math.BigDecimal"/>
+	</subDataset>
+	<parameter name="P_ID" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT 1 from dual]]>
+	</queryString>
+	<field name="1" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50" splitType="Stretch">
+			<staticText>
+				<reportElement x="41" y="17" width="396" height="22" uuid="a9b676ed-ee14-4743-8b15-e563fb772f95"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Poređenje planograma i preporučenih količina - akcija-]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="437" y="17" width="100" height="22" uuid="348be3ab-0854-4272-99a7-5b1cfa7c0ac6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{P_ID}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="239" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table 1" style="table 1" x="4" y="6" width="551" height="50" uuid="812015e7-67e1-4117-b4a2-92ca7db656fd"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Poredjenje_planograma_i_prepor" uuid="b2d3c484-55b1-479f-b18e-dbb085f45e9c">
+						<datasetParameter name="P_ID">
+							<datasetParameterExpression><![CDATA[$P{P_ID}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="42" uuid="9386e95a-79f6-42d4-9849-d912d0c4a763">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="42" height="30" uuid="af8e20a9-aa41-4c3e-9a4e-5605b41ea859"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<text><![CDATA[ID]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="42" height="20" uuid="81222c2e-3ee0-47d0-97f4-73fc043db25c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ID}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="38" uuid="ef5a0ad6-3079-4054-958f-580a9f4812ad">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="38" height="30" uuid="42b6dae0-215f-4745-a0bc-8476233fa026"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<text><![CDATA[SIFRA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="38" height="20" uuid="aa2ceb7d-d5e7-4119-aaf5-61da2a9ddb52"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SIFRA}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="134" uuid="fb0826cf-8ec6-443a-aa98-73fc0294bb96">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="134" height="30" uuid="c716ec57-817a-4a39-8659-8139a4d63884"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<text><![CDATA[ARTIKAL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="134" height="20" uuid="33435fe3-c572-4b00-bcb6-257d57093186"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" pdfEncoding="Cp1250"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ARTIKAL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="48" uuid="248fe764-e9d4-4a27-a15a-5f7faab8c56a">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="48" height="30" uuid="41f3b8d1-cf98-4fb0-8d04-b8c35588a51f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<text><![CDATA[TIP_OBJEKTA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="48" height="20" uuid="ba8f3c5a-11f6-4851-aff6-b0dc6afd7926"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TIP_OBJEKTA}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="47" uuid="a6a89ff9-82c2-44ef-a731-99771699f761">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="47" height="30" uuid="adf0dadf-e8e4-4bb9-8e8f-d4f2202ff91d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<text><![CDATA[PREPORUCENA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="47" height="20" uuid="8ff6ef21-f664-49fd-bf31-ae7526972f22"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PREPORUCENA}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="56" uuid="d0d74aca-c55e-43ac-bb32-ca9fbe760a6a">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="56" height="30" uuid="0d085dee-60b2-436b-b949-c5e8e1822668"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<text><![CDATA[PLANOGRAM]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="56" height="20" uuid="5796d577-6902-4609-a76c-af1458980d15"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PLANOGRAM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="58" uuid="9367c142-bd4b-48d7-90d8-9a39fcd817e9">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="58" height="30" uuid="6b7ee2ef-dcb2-4024-b505-4b30170b8fd3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<text><![CDATA[Odnos plan - preporuka]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="58" height="20" uuid="71dea409-2108-4d20-9b9e-a0f074c06b14"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ODNOS_PLANOGRAM_PREPORUKA}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<summary>
+		<band height="64" splitType="Stretch"/>
+	</summary>
+</jasperReport>

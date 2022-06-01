@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768" prefWidth="1350" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxtemplate.FXMLObracunControler_arhiva">
+   <top>
+      <Pane prefHeight="179.0" prefWidth="1150" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="tabela" prefHeight="169.0" prefWidth="1024.0">
+               <columnResizePolicy>
+                
+               </columnResizePolicy>
+               <columns>
+                  <TableColumn fx:id="ID" prefWidth="75.0" text="ID" />
+                  <TableColumn fx:id="TIP_AKCIJE" prefWidth="95.0" text="TIP_AKCIJE" />
+                  <TableColumn fx:id="DATUM_OD" prefWidth="55.0" text="DATUM_OD" />
+                  <TableColumn fx:id="DATUM_DO" prefWidth="75.0" text="DATUM_DO" />
+                  <TableColumn fx:id="STATUS" prefWidth="75.0" text="STATUS" />
+                  <TableColumn fx:id="KOMENTAR" prefWidth="75.0" text="KOMENTAR" />
+               </columns>
+            </TableView>
+            <Button layoutX="1035.0" layoutY="109.0" mnemonicParsing="false" onAction="#obracun" prefHeight="29.0" prefWidth="308.0" text="Obračunaj" textFill="#222894">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button layoutX="1035.0" layoutY="144.0" mnemonicParsing="false" onAction="#zatvoriObracun" prefHeight="25.0" prefWidth="306.0" text="zatvori obračun" textFill="#222894" />
+         </children>
+      </Pane>
+   </top>
+   <center>
+      <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="Matrica razvoza prvog punjenja">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <TableView fx:id="tblrazvozPrvoPunj" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                           <opaqueInsets>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </opaqueInsets>
+                        </TableView>
+                     </center>
+                     <right>
+                        <Pane fx:id="panePrvoPunjenje" prefHeight="560.0" prefWidth="311.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label layoutX="21.0" layoutY="34.0" text="Izmena matrice prvog punjenja" textFill="#24247c">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <GridPane layoutX="16.0" layoutY="77.0" prefHeight="105.0" prefWidth="284.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="114.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.0" minWidth="10.0" prefWidth="170.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="Na datum" />
+                                    <Label text="početak projekcije" GridPane.rowIndex="1" />
+                                    <Label text="kraj projekcije" GridPane.rowIndex="2" />
+                                    <DatePicker fx:id="izm2Datum" GridPane.columnIndex="1" />
+                                    <DatePicker fx:id="izm2DatumOd" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <DatePicker fx:id="izm2DatumDo" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                 </children>
+                              </GridPane>
+                              <Button layoutX="16.0" layoutY="194.0" mnemonicParsing="false" onAction="#izmeniPrvoPunjenje" prefHeight="25.0" prefWidth="284.0" text="Izmeni matricu razvoza prvog punjenja">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                           </children></Pane>
+                     </right>
+                     <top>
+                        <Pane prefHeight="35.0" prefWidth="1350.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button layoutX="14.0" layoutY="4.0" mnemonicParsing="false" onAction="#prikaziMatricuPrvogPunjenja" prefHeight="30.0" prefWidth="252.0" text="Pregled matrice prvog punjenja">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </Pane>
+                     </top>
+                  </BorderPane>
+               </content></Tab>
+          <Tab text="Matrica razvoza - dopuna">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <top>
+                        <Pane prefHeight="33.0" prefWidth="1350.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button layoutX="445.0" layoutY="1.0" mnemonicParsing="false" onAction="#prikaziMatricuDopuna" prefHeight="27.0" prefWidth="257.0" text="Pregled matrica dopuna">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                              <ComboBox fx:id="cmb_find_matrica_dop" layoutX="187.0" layoutY="2.0" prefHeight="25.0" prefWidth="252.0" />
+                              <Label layoutX="65.0" layoutY="6.0" prefHeight="17.0" prefWidth="114.0" text="odaberite radnju:" />
+                           </children></Pane>
+                     </top>
+                     <center>
+                        <TableView fx:id="tblRazvozDopuna" prefHeight="517.0" prefWidth="997.0" BorderPane.alignment="CENTER">
+                          <columns>
+                            <TableColumn fx:id="RD_ID" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="RD_BROJ_DOPUNE" prefWidth="94.0" text="BROJ_DOPUNE" />
+                              <TableColumn fx:id="RD_ORGJED" prefWidth="96.0" text="ORGJED" />
+                              <TableColumn fx:id="RD_NAZIV_OJ" prefWidth="77.0" text="NAZIV_OJ" />
+                              <TableColumn fx:id="RD_MAGACIN" prefWidth="65.0" text="MAGACIN" />
+                              <TableColumn fx:id="RD_DATUM" prefWidth="74.0" text="DATUM" />
+                              <TableColumn fx:id="RD_DAN_U_NEDELJI" prefWidth="96.0" text="DAN_U_NEDELJI" />
+                              <TableColumn fx:id="RD_STATUS" prefWidth="70.0" text="STATUS" />
+                              <TableColumn fx:id="RD_POC_DATUM_PROJEKCIJE" prefWidth="216.0" text="POC_DATUM_PROJEKCIJE" />
+                              <TableColumn fx:id="RD_KRAJ_DATUM_PROJEKCIJE" prefWidth="128.0" text="KRAJ_DATUM_PROJEKCIJE" />
+                          </columns>
+                        </TableView>
+                     </center>
+                     <right>
+                        <Pane fx:id="paneIzmenaMatriceDopuna" prefHeight="408.0" prefWidth="353.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label layoutX="20.0" layoutY="14.0" prefHeight="17.0" prefWidth="271.0" text="Izmena matrice dopuna" textFill="#211b8a">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Button layoutX="20.0" layoutY="194.0" mnemonicParsing="false" onAction="#azurirajMatricuRazvozaDopuna" prefHeight="25.0" prefWidth="272.0" text="Izmeni stavku matrice razvoza">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Button>
+                              <GridPane layoutX="27.0" layoutY="50.0" prefHeight="132.0" prefWidth="267.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="DATUM" />
+                                    <Label text="pocetak projekcije" GridPane.rowIndex="1" />
+                                    <Label text="kraj projekcije" GridPane.rowIndex="2" />
+                                    <DatePicker fx:id="izmDatum" GridPane.columnIndex="1" />
+                                    <DatePicker fx:id="izmDatumOd" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <DatePicker fx:id="izmDatumDo" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <DatePicker fx:id="izmDatumOd2" prefHeight="25.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <DatePicker fx:id="izmDatumDo2" prefHeight="25.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label text="pocetak projekcije 2" GridPane.rowIndex="3" />
+                                    <Label text="kraj projekcije 2" GridPane.rowIndex="4" />
+                                 </children>
+                              </GridPane>
+                              <Label layoutX="25.0" layoutY="247.0" prefHeight="17.0" prefWidth="271.0" text="Dodavanje stavke u matricu dopuna" textFill="#211b8a">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <DatePicker fx:id="unosDatum" layoutX="145.0" layoutY="264.0" prefHeight="25.0" prefWidth="156.0" />
+                              <Label layoutX="27.0" layoutY="268.0" prefHeight="17.0" prefWidth="85.0" text="Na datum" />
+                              <Button layoutX="31.0" layoutY="437.0" mnemonicParsing="false" onAction="#unesiNoviRazvozDopune" prefHeight="25.0" prefWidth="279.0" text="Dodaj stavku u matricu dopuna">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Button>
+                              <DatePicker fx:id="unosDatumOd" layoutX="145.0" layoutY="300.0" prefHeight="25.0" prefWidth="156.0" />
+                              <DatePicker fx:id="unosDatumDo" layoutX="145.0" layoutY="333.0" prefHeight="25.0" prefWidth="156.0" />
+                              <Label layoutX="27.0" layoutY="304.0" text="početak projekcije" />
+                              <Label layoutX="31.0" layoutY="337.0" prefHeight="17.0" prefWidth="84.0" text="kraj projekcije" />
+                              <DatePicker fx:id="unosDatumOd2" layoutX="145.0" layoutY="368.0" prefHeight="25.0" prefWidth="159.0" />
+                              <DatePicker fx:id="unosDatumDo2" layoutX="145.0" layoutY="400.0" prefHeight="25.0" prefWidth="158.0" />
+                              <Label layoutX="27.0" layoutY="372.0" text="početak projekcije 2" />
+                              <Label layoutX="27.0" layoutY="404.0" text="kraj projekcije 2" />
+                              <Label layoutX="66.0" layoutY="477.0" text="* projekcija 2 se odnosi na procene za sveže meso">
+                                 <font>
+                                    <Font name="System Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                     </right>
+                  </BorderPane>
+               </content></Tab>
+            <Tab text="Pregled preporuka algoritma">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <top>
+                        <Pane prefHeight="192.0" prefWidth="1350.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <TextArea fx:id="PK_OPIS_AREA" layoutX="1040.0" layoutY="7.0" prefHeight="176.0" prefWidth="309.0" wrapText="true" />
+                              <ListView fx:id="listaRadnji" layoutX="2.0" layoutY="37.0" prefHeight="148.0" prefWidth="212.0" />
+                              <Label layoutX="14.0" layoutY="14.0" prefHeight="23.0" prefWidth="200.0" text="Prikaži sve artikle za odabrani MPO" textFill="#2b3890">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Label>
+                              <GridPane layoutX="265.0" layoutY="34.0" prefHeight="137.0" prefWidth="481.0">
+                                <columnConstraints>
+                                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="85.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="160.0" />
+                                    <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="221.0" minWidth="10.0" prefWidth="111.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="160.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="75.0" text="id artikla" />
+                                    <Label prefHeight="17.0" prefWidth="76.0" text="šifra artikla" GridPane.rowIndex="1" />
+                                    <Label prefHeight="17.0" prefWidth="77.0" text="naziv artikla" GridPane.rowIndex="2" />
+                                    <Label prefHeight="17.0" prefWidth="50.0" text="OJ" GridPane.columnIndex="2" />
+                                    <Label prefHeight="17.0" prefWidth="83.0" text="Robna grupa" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <Label prefHeight="17.0" prefWidth="84.0" text="Algoritam" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <TextField fx:id="PK_P_id_artikla" GridPane.columnIndex="1" />
+                                    <TextField fx:id="PK_P_sifra" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="PK_P_naziv_artikla" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <ComboBox fx:id="PK_P_radnja" prefWidth="150.0" GridPane.columnIndex="3" />
+                                    <TextField fx:id="PK_P_RG" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="PK_P_algoritam" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                 </children>
+                              </GridPane>
+                              <Button layoutX="798.0" layoutY="36.0" mnemonicParsing="false" onAction="#listaPreporKolFilter" prefHeight="25.0" prefWidth="174.0" text="Pretraga">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font></Button>
+                              <Button layoutX="798.0" layoutY="65.0" mnemonicParsing="false" onAction="#kreirajExcelPreporuke" prefHeight="22.0" prefWidth="174.0" text="Izvoz u excel" />
+                              <Button layoutX="799.0" layoutY="90.0" mnemonicParsing="false" onAction="#obrisiPretraguPreporKol" prefHeight="25.0" prefWidth="174.0" text="Poništi pretragu" />
+                              <Button layoutX="799.0" layoutY="115.0" mnemonicParsing="false" onAction="#pozoviAnalitiku" prefHeight="25.0" prefWidth="174.0" text="vidi analitiku proracuna" />
+                              <Button layoutX="798.0" layoutY="140.0" mnemonicParsing="false" onAction="#pozoviAnalitikuArtikla" prefHeight="25.0" prefWidth="174.0" text="Analitička kartica">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Button>
+                              <Line endX="400.0" layoutX="366.0" layoutY="35.0" startX="-100.0" />
+                              <Label layoutX="438.0" layoutY="6.0" prefHeight="17.0" prefWidth="106.0" text="FILTERI" textFill="#201879">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="br_redova1" layoutX="865.0" layoutY="170.0" text="Br. redova je :" textFill="#222894">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children></Pane>
+                     </top>
+                     <center>
+                        <TableView fx:id="tblPreporKol" prefHeight="286.0" prefWidth="1350.0" BorderPane.alignment="CENTER">
+                          <columns>
+                            <TableColumn fx:id="PK_ID" prefWidth="38.0" text="ID" />
+                            <TableColumn fx:id="PK_ID_AKCIJE" prefWidth="73.0" text="ID_AKCIJE" />
+                              <TableColumn fx:id="PK_ID_KAMPANJE" prefWidth="94.0" text="ID_KAMPANJE" />
+                              <TableColumn fx:id="PK_ARTIKAL" prefWidth="68.0" text="ARTIKAL" />
+                              <TableColumn fx:id="PK_SIFRA" prefWidth="60.0" text="SIFRA" />
+                              <TableColumn fx:id="PK_NAZIV" prefWidth="149.0" text="NAZIV" />
+                              <TableColumn fx:id="PK_PRIMENJEN_ALGORITAM" prefWidth="137.0" text="PRIMENJEN_ALGORITAM" />
+                              <TableColumn fx:id="PK_PREPORUCENA" prefWidth="75.0" text="PREPORUCENA" />
+                              <TableColumn fx:id="PK_PREPOR_BEZ_KOEF" prefWidth="149.0" text="PREPOR_BEZ_KOEF" />
+                              <TableColumn fx:id="PK_CENA" prefWidth="117.0" text="CENA" />
+                              <TableColumn fx:id="PK_ROBNA_GRUPA" prefWidth="76.0" text="ROBNA_GRUPA" />
+                              <TableColumn fx:id="PK_ORGJED" prefWidth="64.0" text="ORGJED" />
+                              <TableColumn fx:id="PK_NAZIV_ORGJED" prefWidth="164.0" text="NAZIV_ORGJED" />
+                              <TableColumn fx:id="PK_OPIS" prefWidth="87.0" text="OPIS" />
+                          </columns>
+                        </TableView>
+                     </center>
+                     <right>
+                        <Pane prefHeight="368.0" prefWidth="231.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label layoutX="30.0" layoutY="25.0" text="Ručna korekcija količina" textFill="#222895">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="PK_P_RG_izmena_kol" layoutX="14.0" layoutY="111.0" prefHeight="25.0" prefWidth="201.0" />
+                              <Label layoutX="30.0" layoutY="94.0" text="količina" />
+                              <TextArea fx:id="PK_P_RG_izmena_opis" layoutX="16.0" layoutY="172.0" prefHeight="102.0" prefWidth="200.0" />
+                              <Label layoutX="22.0" layoutY="155.0" text="opis" />
+                              <Button layoutX="18.0" layoutY="286.0" mnemonicParsing="false" onAction="#izmeniPreporuku" prefHeight="25.0" prefWidth="193.0" text="izmeni" />
+                           </children>
+                        </Pane>
+                     </right>
+                  </BorderPane>
+               </content></Tab>
+            <Tab fx:id="tabAnalitika" text="Analitika preporuke">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <TableView fx:id="tblPreporKolTemp" prefHeight="553.0" prefWidth="1036.0" BorderPane.alignment="CENTER">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </TableView>
+                     </center>
+                     <top>
+                        <Pane prefHeight="7.0" prefWidth="1350.0" BorderPane.alignment="CENTER" />
+                     </top>
+                     <right>
+                        <TextArea fx:id="txtAreaOpisAnalitika" prefHeight="553.0" prefWidth="405.0" wrapText="true" BorderPane.alignment="CENTER">
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding></TextArea>
+                     </right>
+                  </BorderPane>
+               </content></Tab>
+            <Tab text="Pregled prvog punjenja">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <TableView fx:id="tblPrvoPunjenje" prefHeight="454.0" prefWidth="1350.0" BorderPane.alignment="CENTER">
+                           <columns>
+                              <TableColumn fx:id="PK_ID1" prefWidth="38.0" text="ID" />
+                              <TableColumn fx:id="PK_ID_AKCIJE1" prefWidth="73.0" text="ID_AKCIJE" />
+                              <TableColumn fx:id="PK_ID_KAMPANJE1" prefWidth="94.0" text="ID_KAMPANJE" />
+                              <TableColumn fx:id="PK_ARTIKAL1" prefWidth="68.0" text="ARTIKAL" />
+                              <TableColumn fx:id="PK_SIFRA1" prefWidth="60.0" text="SIFRA" />
+                              <TableColumn fx:id="PK_NAZIV1" prefWidth="149.0" text="NAZIV" />
+                              <TableColumn fx:id="PK_PRIMENJEN_ALGORITAM1" prefWidth="137.0" text="PRIMENJEN_ALGORITAM" />
+                              <TableColumn fx:id="PK_PREPORUCENA1" prefWidth="75.0" text="PREPORUCENA" />
+                              <TableColumn fx:id="PK_PREPOR_BEZ_KOEF1" prefWidth="149.0" text="PREPOR_BEZ_KOEF" />
+                              <TableColumn fx:id="PK_CENA1" prefWidth="117.0" text="CENA" />
+                              <TableColumn fx:id="PK_ROBNA_GRUPA1" prefWidth="76.0" text="ROBNA_GRUPA" />
+                              <TableColumn fx:id="PK_ORGJED1" prefWidth="64.0" text="ORGJED" />
+                              <TableColumn fx:id="PK_NAZIV_ORGJED1" prefWidth="164.0" text="NAZIV_ORGJED" />
+                              <TableColumn fx:id="PK_OPIS1" prefWidth="87.0" text="OPIS" />
+                           </columns>
+                        </TableView>
+                     </center>
+                     <top>
+                        <Pane prefHeight="146.0" prefWidth="1350.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <TextArea fx:id="PP_OPIS_AREA" layoutX="890.0" layoutY="7.0" prefHeight="126.0" prefWidth="458.0" wrapText="true" />
+                              <GridPane layoutX="35.0" layoutY="52.0" prefHeight="83.0" prefWidth="490.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="75.0" text="id artikla" />
+                                    <Label prefHeight="17.0" prefWidth="76.0" text="šifra artikla" GridPane.rowIndex="1" />
+                                    <Label prefHeight="17.0" prefWidth="82.0" text="naziv artikla" GridPane.columnIndex="2" />
+                                    <Label prefHeight="17.0" prefWidth="50.0" text="OJ" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <TextField fx:id="PP_P_id_artikla" GridPane.columnIndex="1" />
+                                    <TextField fx:id="PP_P_sifra" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="PP_P_naziv_artikla" GridPane.columnIndex="3" />
+                                    <ComboBox fx:id="PP_P_radnja" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                 </children>
+                                 <columnConstraints>
+                                    <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="85.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="160.0" />
+                                    <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="221.0" minWidth="10.0" prefWidth="111.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="160.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                              </GridPane>
+                              <Button layoutX="648.0" layoutY="51.0" mnemonicParsing="false" onAction="#listaPrvoPunjenjeFilter" prefHeight="25.0" prefWidth="174.0" text="Pretraga">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font></Button>
+                              <Button layoutX="648.0" layoutY="83.0" mnemonicParsing="false" onAction="#kreirajExcelPrvoPunjenje" prefHeight="25.0" prefWidth="174.0" text="Izvoz u excel" />
+                              <Button layoutX="647.0" layoutY="111.0" mnemonicParsing="false" onAction="#obrisiPretraguPrvoPunjenje" prefHeight="25.0" prefWidth="176.0" text="Poništi pretragu" />
+                              <Line endX="315.0" layoutX="211.0" layoutY="51.0" startX="-100.0" />
+                              <Label layoutX="275.0" layoutY="25.0" prefHeight="17.0" prefWidth="88.0" text="FILTERI" textFill="#3123b2">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="br_redova" layoutX="7.0" layoutY="128.0" text="Broj redova je :" textFill="#222894">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                     </top>
+                  </BorderPane>
+               </content>
+            </Tab>
+            <Tab text="Pregled dopunskih trebovanja">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <top>
+                        <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <TextArea fx:id="DT_P_opis_area" layoutX="975.0" layoutY="26.0" prefHeight="160.0" prefWidth="374.0" wrapText="true" />
+                              <GridPane layoutX="145.0" layoutY="53.0" prefHeight="132.0" prefWidth="608.0">
+                                <columnConstraints>
+                                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="135.0" minWidth="10.0" prefWidth="83.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="199.0" minWidth="10.0" prefWidth="197.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="83.0" text="Datum od" />
+                                    <Label prefHeight="17.0" prefWidth="80.0" text="Datum do" GridPane.rowIndex="1" />
+                                    <Label prefHeight="17.0" prefWidth="75.0" text="Radnja" GridPane.rowIndex="2" />
+                                    <Label prefHeight="17.0" prefWidth="98.0" text="Magacin" GridPane.rowIndex="3" />
+                                    <Label prefHeight="17.0" prefWidth="65.0" text="Id artikla" GridPane.columnIndex="2" />
+                                    <Label text="Šifra artikla" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <Label text="Naziv artikla" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Label text="Broj dopune" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                    <DatePicker fx:id="DT_P_datum_od" GridPane.columnIndex="1" />
+                                    <DatePicker fx:id="DT_P_datum_do" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="DT_P_radnja" prefHeight="25.0" prefWidth="174.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <ComboBox fx:id="DT_P_MAGACIN" prefHeight="25.0" prefWidth="173.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="DT_P_id_artikla" prefHeight="26.0" prefWidth="169.0" GridPane.columnIndex="3" />
+                                    <TextField fx:id="DT_P_sifra" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <TextField fx:id="DT_P_naziv_artikla" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                    <ComboBox fx:id="DT_P_broj_dopune" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                 </children>
+                              </GridPane>
+                              <Button layoutX="786.0" layoutY="56.0" mnemonicParsing="false" onAction="#pretragaDopunskihTrebovanja" prefHeight="25.0" prefWidth="170.0" text="Pretraga">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font></Button>
+                              <Button layoutX="786.0" layoutY="90.0" mnemonicParsing="false" onAction="#kreirajExcelDopuna" prefHeight="25.0" prefWidth="172.0" text="Izvoz u excel" />
+                              <Button layoutX="786.0" layoutY="123.0" mnemonicParsing="false" onAction="#obrisiPretragu" prefHeight="25.0" prefWidth="172.0" text="Poništi pretragu" />
+                              <Button layoutX="786.0" layoutY="158.0" mnemonicParsing="false" onAction="#pozoviAnalitikuArtIzDopTreb" prefHeight="25.0" prefWidth="170.0" text="Analitička kartica">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Button>
+                              <Line endX="495.0" layoutX="267.0" layoutY="43.0" startX="-100.0" />
+                              <Label layoutX="432.0" layoutY="12.0" text="FILTERI" textFill="#563ea4">
+                                 <font>
+                                    <Font name="System Bold" size="19.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="br_redova2" layoutX="20.0" layoutY="175.0" text="Br. redova je :" textFill="#222894">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                     </top>
+                     <center>
+                        <TableView fx:id="tblDopunskaTrebovanja" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                          <columns>
+                            <TableColumn fx:id="DT_ORGJED" prefWidth="75.0" text="ORGJED" />
+                            <TableColumn fx:id="DT_RADNJA" prefWidth="75.0" text="RADNJA" />
+                              <TableColumn fx:id="DT_ID_ARTIKLA" prefWidth="75.0" text="ID_ARTIKLA" />
+                              <TableColumn fx:id="DT_SIFRA" prefWidth="75.0" text="SIFRA" />
+                              <TableColumn fx:id="DT_NAZIV_ARTIKLA" prefWidth="75.0" text="NAZIV_ARTIKLA" />
+                              <TableColumn fx:id="DT_BROJ_DOPUNE" prefWidth="75.0" text="BROJ_DOPUNE" />
+                              <TableColumn fx:id="DT_MAGACIN" prefWidth="75.0" text="MAGACIN" />
+                              <TableColumn fx:id="DT_DATUM" prefWidth="75.0" text="DATUM" />
+                              <TableColumn fx:id="DT_MULTIFAKTOR" prefWidth="82.0" text="MULTIFAKTOR" />
+                              <TableColumn fx:id="DT_ZALIHA" prefWidth="89.0" text="ZALIHA" />
+                              <TableColumn fx:id="DT_DATUM_ZALIHE" text="DATUM_ZALIHE" />
+                              <TableColumn fx:id="DT_PREPOR_KOL_DO_ISPORUKE" prefWidth="87.0" text="PREPOR_KOL_DO_ISPORUKE" />
+                              <TableColumn fx:id="DT_PREPOR_KOL_PERIOD" prefWidth="72.0" text="PREPOR_KOL_PERIOD" />
+                              <TableColumn fx:id="DT_NESREDJENA_KOLICINA" prefWidth="83.0" text="NESREDJENA_KOLICINA" />
+                              <TableColumn fx:id="DT_SREDJENA_KOLCINA" prefWidth="62.0" text="SREDJENA_KOLCINA" />
+                              <TableColumn fx:id="DT_PROJEKCIJA_OD" prefWidth="45.0" text="PROJEKCIJA_OD" />
+                              <TableColumn fx:id="DT_PROJEKCIJA_DO" prefWidth="75.0" text="PROJEKCIJA_DO" />
+                              <TableColumn fx:id="DT_RG_ROOT" prefWidth="75.0" text="RG_ROOT" />
+                              <TableColumn fx:id="DT_ID_AKCIJE" prefWidth="75.0" text="ID_AKCIJE" />
+                              <TableColumn fx:id="DT_ID_KAMPANJE" prefWidth="75.0" text="ID_KAMPANJE" />
+                          </columns>
+                        </TableView>
+                     </center>
+                  </BorderPane>
+               </content></Tab>
+            <Tab text="Brisanje pojedinacnog artikla">
+               <content>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tbl_artikli_stop" layoutX="14.0" layoutY="80.0" prefHeight="445.0" prefWidth="487.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="230.0" layoutY="36.0" text="Lista Artikla">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="518.0" layoutY="80.0" mnemonicParsing="false" onAction="#obrisiJedanArtikalIZStop" prefHeight="25.0" prefWidth="185.0" text="Obrisi artikal">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+               </content>
+            </Tab>
+            <Tab text="Nedostajuci artikli">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <TableView fx:id="tblPNedostajuciArtikli" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                        </TableView>
+                     </center>
+                  </BorderPane>
+               </content></Tab>
+            <Tab text="Error log">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <TableView fx:id="tblErrorLog" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                        </TableView>
+                     </center>
+                  </BorderPane>
+               </content></Tab>
+            <Tab text="Izvestaji">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <top>
+                        <Pane prefHeight="246.0" prefWidth="1350.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button layoutX="27.0" layoutY="107.0" mnemonicParsing="false" onAction="#pozoviReport" prefHeight="25.0" prefWidth="253.0" text="OS i OOS" />
+                              <Button layoutX="27.0" layoutY="26.0" mnemonicParsing="false" onAction="#pozoviReportIsporukePoDC" prefHeight="25.0" prefWidth="253.0" text="Štampa prepooruka po dc" />
+                              <Button layoutX="27.0" layoutY="53.0" mnemonicParsing="false" onAction="#pozoviReportPoredjenjePlanograma" prefHeight="25.0" prefWidth="253.0" text="Uporedi planograme i preporučene kol" />
+                              <Button layoutX="27.0" layoutY="80.0" mnemonicParsing="false" onAction="#pozoviReportPoredjenjeMF" prefHeight="25.0" prefWidth="252.0" text="Uporedi MF i preporučene kol" />
+                              <Button layoutX="27.0" layoutY="134.0" mnemonicParsing="false" onAction="#pozoviReportNeposlatiArtikli" prefHeight="25.0" prefWidth="252.0" text="Artikli koji uopšte nisu slati zbog OS-a" />
+                              <Button layoutX="27.0" layoutY="159.0" mnemonicParsing="false" onAction="#pozoviReportKriticneSekundarne" prefHeight="25.0" prefWidth="252.0" text="Kritične sekundarne pozicije" />
+                           </children>
+                        </Pane>
+                     </top>
+                  </BorderPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>

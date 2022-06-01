@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane id="maska" fx:id="maska" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxtemplate.FXMLGlavniController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="STOP AKCIJA -šifarnici">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#pozoviListuAkcija" text="Lista Akcija" />
+                  <MenuItem mnemonicParsing="false" onAction="#pozoviRadnje" text="MP objekti" />
+                  <MenuItem mnemonicParsing="false" onAction="#pozoviSpecificneDane" text="Specificni dani" />
+                  <MenuItem mnemonicParsing="false" onAction="#pozoviZamenskeArtikle" text="Zamenski artikli" />
+                  <MenuItem mnemonicParsing="false" onAction="#pozoviSekundarnePozicije" text="Sekundarne pozicije" />
+                  <MenuItem mnemonicParsing="false" onAction="#showAkcije2maska" text="Marketinške aktivnosti" />
+                  <MenuItem mnemonicParsing="false" onAction="#showIzuzeciIzAsortimana" text="Izuzeci iz asortimana" />
+                  <MenuItem mnemonicParsing="false" onAction="#showPlanogram" text="Planogrami" />
+                  <MenuItem mnemonicParsing="false" onAction="#pozoviMaksimalneKolicineStop" text="Maksimalne kolicine - STOP" />
+                  <MenuItem mnemonicParsing="false" onAction="#pozoviMaksimalneZaliheStop" text="Maksimalne zalihe - STOP" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="STOP AKCIJA - obrade i pregledi">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#pozoviObracun" text="Obracun i analitika" />
+              <MenuItem mnemonicParsing="false" onAction="#pozoviPregledeAkcija" text="Pregled akcije" />
+                  <MenuItem mnemonicParsing="false" onAction="#pozoviStatArtikNaAkc" text="Pregledi istorijskih akcija artikla" />
+                  <MenuItem mnemonicParsing="false" onAction="#pozoviRucnuKorekcijuKol" text="Ručna korekcija preporučenih kol" />
+                  <MenuItem mnemonicParsing="false" onAction="#showRucnePreporuke" text="Ručne preporuke" />
+                  <MenuItem mnemonicParsing="false" onAction="#showArhivaStopAkcije" text="Arhiva Stop Akcija" />
+                  <MenuItem mnemonicParsing="false" onAction="#showMinimalneKolicine" text="Minimalne količine" />
+                  <MenuItem mnemonicParsing="false" onAction="#pozoviObracunArhiva" text="Obracun i analitika - ARHIVA" />
+                  <MenuItem mnemonicParsing="false" onAction="#showRucneDopune" text="Ručne dopune" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Vikend AKCIJA">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#showVikendAkcija" text="Vikend akcija" />
+                  <MenuItem mnemonicParsing="false" onAction="#showObracunVikend" text="Analitika obračuna" />
+               </items></Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <Label prefHeight="81.0" prefWidth="612.0" text="Konfiguracija i administracija automatskog trebovanja akcijske robe" textFill="#23146b" wrapText="true" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+   </center>
+</BorderPane>
